@@ -47,3 +47,7 @@ Coolplot
 
 ggsave("fig_output/Coolplot.png") # Specifying the folder to save plot
 
+
+
+
+http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html
