@@ -100,4 +100,5 @@ surveys %>%
 #Reshaping the data
 
 # Downloading a file from the internet and saving it in a portal
-download.file("https://www.dropbox.com/s/n4s3ojxy74wy7hg/surveys_complete.csv?dl=0","data_output/surveys_complete.csv")
+# download.file("https://www.dropbox.com/s/n4s3ojxy74wy7hg/surveys_complete.csv?dl=0","data_output/surveys_complete.csv")
+
