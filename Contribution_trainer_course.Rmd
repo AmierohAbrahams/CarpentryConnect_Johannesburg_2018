@@ -1,0 +1,89 @@
+---
+title: "Contribution_trainercourse"
+author: "Amieroh Abrahams"
+date: "05 September 2018"
+output: html_document
+---
+
+\newpage
+
+Before analysing the data and constructing graphs first give a background on what the data actually is or what is being investigated. This keeps the particapants interested and allows learners to create hypothesis and this allows learners to create a visualisation with a purpose. Another thing to consider is to link GitHub with Rstudio once all the termianl (Shell courses) are complete but before learners start working in Rstudio. This way working in the terminal is still fresh and people will be able to apply it better. By already having Git set up with Rstudio, when Rstudio is finally being taught the students can commit, push and pull at the same time using GitHub. This provides students with Rstudio and Git experience.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Possible exercise to add:
+Here is a dataset with a brief introduction and objectives on why we are analysing the data and the different types of basic graphs that can be constructed using the data.
+
+# Introduction
+
+This is a  dataset looking at the pH levels vary at different sections of a river. Rivers are along the most vunerable water bodies to pollution as they carry off the industrial wastewater and run-off from the agricultural land [@McCutchan2011]. pH affects many chemical and biological processess in the water. Different organisms flourish at different pH levels. Water chemistry may differ considerably between streams even within small distances [@Steinnes2001; @Gunderson2001]. Research suggests that the pH of both freshwater and seawater vary. Different zones of rivers, oceans and estuaries vary in the pH level.In this study we will be testing if there is any variation in the pH along three different sites in the Grootvlei river.
+
+*Knowing this creates a background and level of interest to the learners*
+
+# Objective
+
+The objective of this research will be to investigate whether there is a significant difference in the pH at various sites in the river. The river was divided into three regions: down-stream, up-stream and mid-stream. 
+
+## Data collection
+
+Thirteen pH readings were done at three different sites, namely: up-stream, mid-stream and down-stream thus resulting in a total of 39 readings. These sites were located using a hand GPS. The pH was measured *in situ* using a pH meter.
+
+
+Clearly demonstrate the packages needed for this analysis
+```{r, include=FALSE, cache=FALSE, echo=FALSE}
+library(ggplot2)
+library(tidyverse)
+library(ggpubr)
+```
+
+## Loading the Data 
+*clearly illistrate how to load the data*
+
+```{r include=TRUE, cache=FALSE, echo=TRUE}
+#Load the data
+ pH <- read_csv("pH.csv")
+pH <- read.table("pH.csv", sep = ",", header = TRUE)
+```
+
+```{r echo = TRUE,  warning=FALSE"}
+
+ggplot(data = pH, aes(x = Site, y = pH)) + 
+  geom_boxplot(aes(fill = Site)) + 
+  labs(y = "pH")  +    #Show how to label x and y axis
+   scale_fill_brewer(palette = "Spectral") #mention R has different palette and show this palettes
+
+```
+
+*Explain to the learners what the box plot actually mean*
+
+The box plot is a standardized way of displaying the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.This graph represents the pH at the three different sites.The average mean of the pH up-stream is higher than both the downstream and midstream sites. By using the box plot we are able to determine where pH is found at the highest and at the lowest.
+
+
+```{r echo = TRUE,  warning=FALSE"}
+
+dat1 <- pH %>% 
+  group_by(Site) %>% 
+  summarise(mn.pH = mean(pH),
+            sd.pH = sd(pH))
+
+ggplot(dat1, aes(x = Site, y = mn.pH)) +
+  geom_col(aes(fill = Site)) +
+  geom_errorbar(aes(ymin = mn.pH - sd.pH, 
+                    ymax = mn.pH + sd.pH)) +
+   scale_fill_brewer(palette = "Spectral") +
+  labs(x = "Site", y = "Average pH")
+```
+
+*explain the graph*
+
+The above graph illistrates that the up-stream region has the highest average pH of the three sites. In contrast the down-stream region has the lowest pH value. The pH of the three sites range between 5.8-6.5. The error bars show that there is a slight deviation in the data, but overall, site three is still highest.
