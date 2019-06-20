@@ -6,12 +6,22 @@ setwd()     #
 ??kruskal  # search result of all the documentation in R that deals with kruskal
 ?mean      # Provides help discription to explain mean
 sessionInfo()    #Gives info relevant to your infomation on R
+
+
+
 3+5
 5/2
 165*pi
 weight_kg <- 55
 (weight_kg <- 55) # echos in the console
-2.2*weight_kg      #Using created value
+
+
+
+result<-2.2*weight_kg      #Using created value
+
+result*weight_kg
+
+
 weighht_lb <- 2.2*weight_kg
 . # refrain frm using - dot used in methods
 

@@ -102,3 +102,28 @@ surveys %>%
 # Downloading a file from the internet and saving it in a portal
 # download.file("https://www.dropbox.com/s/n4s3ojxy74wy7hg/surveys_complete.csv?dl=0","data_output/surveys_complete.csv")
 
+#Exercise 
+# Creating additional graphs and then pushing it to github
+# Additional graph
+# Tracking Git changes
+
+dat1 <- surveys_complete %>% 
+  group_by(species_id) %>% 
+  summarise(mn.weight = mean(weight),
+            sd.weight = sd(weight))
+
+ggplot(dat1, aes(x = species_id, y = mn.weight)) +
+  geom_col(aes(fill = species_id)) +
+  geom_errorbar(aes(ymin = mn.weight - sd.weight, 
+                    ymax = mn.weight + sd.weight)) +
+  scale_fill_brewer(palette = "Spectral") +
+  labs(x = "Species_id", y = "Average weight")
+
+
+
+
+
+
+
+
+
